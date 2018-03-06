@@ -1,16 +1,15 @@
 #include <iostream>
 #include <Vector.hpp>
-#include <array>
+#include <vector>
 
 
-void Vector::setVector(double &value){
-    vector[x]  = *value;
+void Vector::setVector(int x, double value){
+    vect[x]  = value;
 }
 double Vector::getVector(int x){
-    return vector[x];
+    return vect[x];
 }
-
 int main(void){
-    Vector wektor = (1.1, 1.1, 2.2);
-    std::cout << wektor.getVector(0);
+    Vector wektor({1.1,2.1});
+    std::cout << wektor.getVector(1);
 }

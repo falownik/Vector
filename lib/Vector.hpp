@@ -1,5 +1,5 @@
 #include <iostream>
-#include <array>
+#include <vector>
 
 class Vector{
 private:
@@ -7,11 +7,9 @@ private:
 public:
 int lenght, l;
 //std::array<double, lenght> vector;
-double *vector = new double[lenght];
-Vector(double *v)
-: vector(v){}
-Vector(double [] value)
-: vector(value[]){}
-void setVector (double &);
-double getVector (int x);
+std::vector<double> vect;
+Vector(std::vector<double> v)
+: vect(v){}
+void setVector (int , double);
+double getVector (int );
 };
