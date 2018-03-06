@@ -1,13 +1,17 @@
 #include <iostream>
+#include <array>
 
 class Vector{
 private:
 
 public:
 int lenght, l;
-std::array<double, lenght>;
-void Vector(std::array<double, l>)
-: std::array<double, lenght>(std::array<double, l>);
-void setVector (int x, double value);
-void getVector (int x);
-}
+//std::array<double, lenght> vector;
+double *vector = new double[lenght];
+Vector(double *v)
+: vector(v){}
+Vector(double [] value)
+: vector(value[]){}
+void setVector (double &);
+double getVector (int x);
+};
