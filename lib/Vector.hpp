@@ -1,30 +1,43 @@
 #include <iostream>
 #include <vector>
 
-class Vector{
-private:
+class Vector
+{
+  private:
+  public:
+    std::vector<double> vect;
+    Vector() {}
+    Vector(std::vector<double> v)
+        : vect(v) {}
+    Vector (double x){vect.push_back(x);}
+    Vector(const Vector &wektor)
+        : vect(wektor.vect) {}
+    void setVector(int, double);
+    void setVector(double);
+    double getVector(int);
+    int sizeOfVector(void);
 
-public:
-int lenght, l;
-std::vector<double> vect;
-Vector(){}
-Vector(std::vector<double> v)
-: vect(v){}
-void setVector (int , double);
-double getVector (int );
-int sizeOfVector(void);
-Vector operator+(Vector wektor2){
-if (this->sizeOfVector()!=(wektor2).sizeOfVector()){
-    std::cout << "blad sumowania wektorow" << std::endl;
-}
-Vector wynik;
-for (int i = 0; i < this->sizeOfVector(); i++){
-    this->setVector(i, this->getVector(i) + (wektor2).getVector(i));
-}
-return wynik;
-}
-//deklaracja przeciążenia operatora <<
-friend std::ostream& operator<<(std::ostream&,Vector &);
-//Destruktor
-~Vector(){}
+
+    //przeciazanie + i +=
+    friend Vector operator+(Vector, Vector);
+    Vector &operator+=(Vector &);
+
+        //przeciazanie - i -=
+    friend Vector operator-(Vector, Vector);
+    Vector &operator-=(Vector &);
+
+
+    double &operator[](int x) { return vect[x]; };
+
+    //przeciazanie >> i <<
+    friend std::ostream &operator<<(std::ostream &, const Vector &);
+    friend void operator>>(std::istream &, Vector &);
+
+    //przeciazanie * i *=
+    friend Vector operator*(Vector, Vector);
+    Vector &operator*=(Vector &);
+
+    //Destruktor
+    ~Vector() {}
 };
+bool eq(Vector , Vector);
