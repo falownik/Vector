@@ -2,7 +2,10 @@
 #include <Vector.hpp>
 #include <stdexcept>
 #include <vector>
+#include <cstdlib>
+#include <sstream>
 
+using namespace std;
 
 void Vector::setVector(int x, double value){
     vect[x]  = value;
@@ -83,19 +86,32 @@ Vector &Vector::operator*=(Vector &wektor2)
     os << std::endl;
     return os;
 }
-void operator>>(std::istream &is, Vector &wektor){
-    std::string buffer = "";
-    size_t *wsk = NULL;
-    double number = 0.0;
+/*void operator>>(std::istream &is, Vector &wektor){
     int i = 0;
-    is >> buffer;
+    string bufor = "";
+    double wartosc = 0.0;
+    int czy_wczytana = 0;
     do
     {
-        wektor[i] = stod (buffer, wsk);
+        czy_wczytana = fscanf(stdin, "%d", wartosc);
+        wektor.setVector(wartosc);
         i++;
-    }while (i < 5);
+    }while (czy_wczytana == 1);
 }
+*/
+void operator>>(std::istream &is, Vector &wektor)
+{
+    double temp = 0.0;
+    string buff;
+    getline(is, buff);
+    stringstream buffer(buff);
 
+    do
+    {
+            buffer >> temp;
+            wektor.setVector(temp);
+    }while (!buffer.fail());
+}
 const bool &Vector::operator== ( Vector &wektor) 
 {
     return (this->sizeOfVector() == wektor.sizeOfVector());
@@ -107,9 +123,7 @@ const bool &Vector::operator== ( Vector &wektor)
 
 
 int main(void){
-    Vector wektor({1.1,2.1});
-    Vector wektor1({1,2});
-    wektor += wektor1;
+    Vector wektor;
     std::cin >> wektor;
     //std::cout << wektor.getVector(0);
     //std::cout << wektor.getVector(1);
