@@ -37,6 +37,9 @@ class Vector
     friend Vector operator*(Vector, Vector);
     Vector &operator*=(Vector &);
 
+    //przeciazanie == i !=
+    const bool &operator== ( Vector &);
+
     //Destruktor
     ~Vector() {}
 };

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <Vector.hpp>
+#include <stdexcept>
 #include <vector>
 
 
@@ -84,19 +85,22 @@ Vector &Vector::operator*=(Vector &wektor2)
 }
 void operator>>(std::istream &is, Vector &wektor){
     std::string buffer = "";
+    size_t *wsk = NULL;
     double number = 0.0;
     int i = 0;
-
+    is >> buffer;
     do
     {
-        is >> buffer;
-        buffer >> number;
-        wektor[i] = number;
+        wektor[i] = stod (buffer, wsk);
         i++;
-
-    }while (buffer != '\n');
-
+    }while (i < 5);
 }
+
+const bool &Vector::operator== ( Vector &wektor) 
+{
+    return (this->sizeOfVector() == wektor.sizeOfVector());
+}
+
 
 
 
@@ -109,7 +113,7 @@ int main(void){
     std::cin >> wektor;
     //std::cout << wektor.getVector(0);
     //std::cout << wektor.getVector(1);
-    std::cout <<wektor * wektor1;
+    std::cout <<wektor;
     //std::cout << wektor.sizeOfVector() << wektor1.sizeOfVector();
     //for (auto b: wektor.vect)
     //std::cout << wektor.vect;
