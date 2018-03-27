@@ -8,7 +8,7 @@ public:
     bool testSetVector2Argument (void);
     bool testOperatorGet(void);
     bool testOperatorRead (void);
-    bool testOperatorWrite (std::ostream &);
+    bool testOperatorWrite (void);
     bool testOperatorPlus (void);
     bool testOperatorPlusUnary (void);
     bool testOperatorMinus (void);
@@ -16,5 +16,6 @@ public:
     bool testOperatorMultiplication (void);
     bool testOperatorMultiplicationUnary (void);
     bool testOperatorEqualUnary(void);
+    bool testOperatorUnequalUnary(void);
 
 };

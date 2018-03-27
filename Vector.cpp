@@ -152,5 +152,12 @@ int main(void){
     std::cout << test.testSetVector2Argument();
     std::cout << test.testOperatorGet();
     std::cout << test.testOperatorEqualUnary();
+    std::cout << test.testOperatorUnequalUnary();
+    std::cout << test.testOperatorPlus();
+    std::cout << test.testOperatorPlusUnary();
+    std::cout << test.testOperatorMinus();
+    std::cout << test.testOperatorMinusUnary();
+    std::cout << test.testOperatorMultiplication();
+    std::cout << test.testOperatorMultiplicationUnary();
     return 0;
 }
