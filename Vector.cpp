@@ -5,7 +5,6 @@
 #include <vector>
 #include <cstdlib>
 #include <sstream>
-#include <exception>
 
 using namespace std;
 
@@ -31,7 +30,7 @@ bool eq(Vector wektor1, Vector wektor2)
 Vector operator+(Vector wektor1, Vector wektor2)
 {
     if (!eq(wektor1, wektor2))
-        ;//wstawić procedurę
+        std::cerr << "Error";
     Vector wynik;
     for ( int i = 0 ; i < wektor1.sizeOfVector() ; i++ )
         wynik.setVector(wektor1[i] + wektor2[i]);
@@ -41,7 +40,7 @@ Vector operator+(Vector wektor1, Vector wektor2)
 Vector &Vector::operator+=(Vector &wektor2)
 {
     if (!eq(*this, wektor2))
-        ;//wstawić procedurę
+        std::cerr << "Error";
     for ( int i = 0 ; i < this->sizeOfVector() ; i++ )
         this->setVector(i, this->getVector(i) + wektor2.getVector(i) );
     return *this;
@@ -49,7 +48,7 @@ Vector &Vector::operator+=(Vector &wektor2)
 Vector operator-(Vector wektor1, Vector wektor2)
 {
     if (!eq(wektor1, wektor2))
-        ;//wstawić procedurę
+        std::cerr << "Error";
     Vector wynik;
     for ( int i = 0 ; i < wektor1.sizeOfVector() ; i++ )
         wynik.setVector(wektor1[i] - wektor2[i]);
@@ -67,7 +66,7 @@ Vector &Vector::operator-=(Vector &wektor2)
 Vector operator*(Vector wektor1, Vector wektor2)
 {
     if (!eq(wektor1, wektor2))
-        ;//wstawić procedurę
+        std::cerr << "Error";
     Vector wynik;
     for ( int i = 0 ; i < wektor1.sizeOfVector() ; i++ )
         wynik.setVector(wektor1[i] * wektor2[i]);

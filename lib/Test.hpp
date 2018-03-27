@@ -6,7 +6,7 @@ public:
     Test(){}
     bool testSetVector1Argument (void);
     bool testSetVector2Argument (void);
-    bool testOperatorGet(void);
+    bool testOperatorGet (void);
     bool testOperatorRead (void);
     bool testOperatorWrite (void);
     bool testOperatorPlus (void);
@@ -15,7 +15,7 @@ public:
     bool testOperatorMinusUnary (void);
     bool testOperatorMultiplication (void);
     bool testOperatorMultiplicationUnary (void);
-    bool testOperatorEqualUnary(void);
-    bool testOperatorUnequalUnary(void);
+    bool testOperatorEqualUnary (void);
+    bool testOperatorUnequalUnary (void);
 
 };
