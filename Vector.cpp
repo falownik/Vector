@@ -4,10 +4,13 @@
 #include <vector>
 #include <cstdlib>
 #include <sstream>
+#include <exception>
 
 using namespace std;
 
 void Vector::setVector(int x, double value){
+    while (vect.size() <= x)
+        vect.push_back(0);
     vect[x]  = value;
 }
 void Vector::setVector(double x){
@@ -86,19 +89,7 @@ Vector &Vector::operator*=(Vector &wektor2)
     os << std::endl;
     return os;
 }
-/*void operator>>(std::istream &is, Vector &wektor){
-    int i = 0;
-    string bufor = "";
-    double wartosc = 0.0;
-    int czy_wczytana = 0;
-    do
-    {
-        czy_wczytana = fscanf(stdin, "%d", wartosc);
-        wektor.setVector(wartosc);
-        i++;
-    }while (czy_wczytana == 1);
-}
-*/
+
 void operator>>(std::istream &is, Vector &wektor)
 {
     double temp = 0.0;
@@ -110,26 +101,68 @@ void operator>>(std::istream &is, Vector &wektor)
     {
             buffer >> temp;
             wektor.setVector(temp);
-    }while (!buffer.fail());
+        }while (!buffer.fail());
+        wektor.vect.pop_back();
+    
 }
 const bool &Vector::operator== ( Vector &wektor) 
 {
     return (this->sizeOfVector() == wektor.sizeOfVector());
 }
 
-
-
-
+void Test::testSetVector1Argument(void)
+{
+    Vector wektor;
+    for (int i = 0; i < 1000; i++){
+        wektor.setVector(i);
+        if (wektor.vect.back() != (double)i)
+            std:: cout << "Test oblany na:" << i << std::endl;
+        }
+        std::cout << "Zakoczono";
+    }
+    void Test::testSetVector2Argument(void)
+{
+    Vector wektor;
+    wektor.setVector(0);
+    for (int i = 0; i < 1000; i++){
+        wektor.setVector(i,(double)i);
+        if (wektor[i] != (double)i)
+            std:: cout << "Test oblany na:" << i << std::endl;
+        }
+        for (int i = 0; i < 1000; i++){
+            auto randomized = rand();
+        wektor.setVector(randomized,randomized);
+        if (wektor[randomized] != randomized)
+            std:: cout << "Test oblany na:" << i << std::endl;
+    }
+        std::cout << "Zakoczono";
+    }
+void Test::testOperatorGet(void)
+{
+    for (int i = 0; i < 1000; i++){
+            auto randomized = rand();
+        wektor.setVector(randomized,randomized);
+    }
+    for (int i = 0; i < 1000; i++){
+            auto randomized = rand();
+        if (wektor[randomized] != wektor.getVector(randomized))
+            std::cout << "Error"
+    }
+}
 
 
 int main(void){
-    Vector wektor;
-    std::cin >> wektor;
+    //Vector wektor;
+    //std::cin >> wektor;
     //std::cout << wektor.getVector(0);
     //std::cout << wektor.getVector(1);
-    std::cout <<wektor;
+    //std::cout <<wektor;
     //std::cout << wektor.sizeOfVector() << wektor1.sizeOfVector();
     //for (auto b: wektor.vect)
     //std::cout << wektor.vect;
+    Test test;
+    test.testSetVector1Argument();
+    test.testSetVector2Argument();
+    test.testOperatorGet();
     return 0;
 }
