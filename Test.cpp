@@ -1,35 +1,37 @@
 #include "Vector.hpp"
-#include "Test.cpp"
+#include "Test.hpp"
 
-void Test::testSetVector1Argument(void)
+bool Test::testSetVector1Argument(void)
 {
     Vector wektor;
     for (int i = 0; i < 1000; i++){
         wektor.setVector(i);
         if (wektor.vect.back() != (double)i)
-            std:: cout << "Test oblany na:" << i << std::endl;
+            return false;
         }
-        std::cout << "Zakoczono";
+        return true;
     }
-    void Test::testSetVector2Argument(void)
+    bool Test::testSetVector2Argument(void)
 {
     Vector wektor;
     wektor.setVector(0);
     for (int i = 0; i < 1000; i++){
         wektor.setVector(i,(double)i);
         if (wektor[i] != (double)i)
-            std:: cout << "Test oblany na:" << i << std::endl;
+            return false;
         }
         for (int i = 0; i < 1000; i++){
             auto randomized = rand();
         wektor.setVector(randomized,randomized);
         if (wektor[randomized] != randomized)
-            std:: cout << "Test oblany na:" << i << std::endl;
-    }
-        std::cout << "Zakoczono";
-    }
-void Test::testOperatorGet(void)
+            return false;
+        
+            return true;
+        }
+}
+bool Test::testOperatorGet(void)
 {
+    Vector wektor;
     for (int i = 0; i < 1000; i++){
             auto randomized = rand();
         wektor.setVector(randomized,randomized);
@@ -37,13 +39,18 @@ void Test::testOperatorGet(void)
     for (int i = 0; i < 1000; i++){
             auto randomized = rand();
         if (wektor[randomized] != wektor.getVector(randomized))
-            std::cout << "Error"
-    }
+            return false;    
+        }
+        return true;
 }
-void Test::testOperatorRead(void)
+bool Test::testOperatorRead(void)
 {
     Vector wektor;
     std::cin >> wektor;
-    
-    
+}
+bool Test::testOperatorEqualUnary(void)
+{
+    Vector wektor1({1,1,2});
+    Vector wektor2({1,1,2});
+    return wektor1 == wektor2;
 }

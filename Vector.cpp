@@ -1,5 +1,6 @@
 #include <iostream>
-#include <Vector.hpp>
+#include "Vector.hpp"
+#include "Test.hpp"
 #include <stdexcept>
 #include <vector>
 #include <cstdlib>
@@ -105,49 +106,31 @@ void operator>>(std::istream &is, Vector &wektor)
         wektor.vect.pop_back();
     
 }
-const bool &Vector::operator== ( Vector &wektor) 
+const bool Vector::operator== ( Vector &wektor) 
 {
-    return (this->sizeOfVector() == wektor.sizeOfVector());
+    bool check = true;
+    if (!(this->sizeOfVector() == wektor.sizeOfVector())) return false;
+    auto x = 0;
+    while (x < this->sizeOfVector())
+    {
+    check = (vect.at(x) == wektor[x]);
+    if (check == false) return false;
+    x++;
+    }
+    return true;
 }
 
-void Test::testSetVector1Argument(void)
+const bool Vector::operator!= ( Vector &wektor) 
 {
-    Vector wektor;
-    for (int i = 0; i < 1000; i++){
-        wektor.setVector(i);
-        if (wektor.vect.back() != (double)i)
-            std:: cout << "Test oblany na:" << i << std::endl;
-        }
-        std::cout << "Zakoczono";
+    bool check (true);
+    if (!(this->sizeOfVector() != wektor.sizeOfVector())) return false;
+    auto x = 0;
+    while (x < this->sizeOfVector())
+    {
+    check = (vect.at(x) != wektor[x]);
+    if (check == false) return false;
     }
-    void Test::testSetVector2Argument(void)
-{
-    Vector wektor;
-    wektor.setVector(0);
-    for (int i = 0; i < 1000; i++){
-        wektor.setVector(i,(double)i);
-        if (wektor[i] != (double)i)
-            std:: cout << "Test oblany na:" << i << std::endl;
-        }
-        for (int i = 0; i < 1000; i++){
-            auto randomized = rand();
-        wektor.setVector(randomized,randomized);
-        if (wektor[randomized] != randomized)
-            std:: cout << "Test oblany na:" << i << std::endl;
-    }
-        std::cout << "Zakoczono";
-    }
-void Test::testOperatorGet(void)
-{
-    for (int i = 0; i < 1000; i++){
-            auto randomized = rand();
-        wektor.setVector(randomized,randomized);
-    }
-    for (int i = 0; i < 1000; i++){
-            auto randomized = rand();
-        if (wektor[randomized] != wektor.getVector(randomized))
-            std::cout << "Error"
-    }
+    return true;
 }
 
 
@@ -160,9 +143,14 @@ int main(void){
     //std::cout << wektor.sizeOfVector() << wektor1.sizeOfVector();
     //for (auto b: wektor.vect)
     //std::cout << wektor.vect;
+    Vector wektor ({1,2,1});
+    Vector wektor1 ({1,2});
+    if (wektor == wektor1)
+    std::cout << "tak";
     Test test;
-    test.testSetVector1Argument();
-    test.testSetVector2Argument();
-    test.testOperatorGet();
+    std::cout << test.testSetVector1Argument();
+    std::cout << test.testSetVector2Argument();
+    std::cout << test.testOperatorGet();
+    std::cout << test.testOperatorEqualUnary();
     return 0;
 }
